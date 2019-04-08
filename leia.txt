@@ -1,1 +1,6 @@
 Sistema de gestão financeiro, use e seja feliz.
+
+Para iniciar o sistema é necessário que tenha python V3.X instalada na sua maquina e talvez não funcione tão legal com linux ou mac, pois existem comandos que eu só conheco em windows, mas nada impede você de alterar os arquivos. Os comandos se tratam meramente da parte estética do sistema. 
+vá com o CMD até a pasta onde salvou o git clone;
+digite python mainAssistV1.1;
+
