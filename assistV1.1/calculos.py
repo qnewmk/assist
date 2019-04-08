@@ -1,7 +1,7 @@
-from huds import hud_final
-
+from bd import ler_gastos,ler_receitas
 def calc_gastos():
-    gastos = pega_gastos()
+    gastos = ler_gastos()
+    gastos = dict(gastos)
     total = 0
     '''
     item contem a chave de gastos;
@@ -14,7 +14,8 @@ def calc_gastos():
 
 
 def calc_receitas():
-    receitas = pega_receitas()
+    receitas = ler_receitas()
+    receitas = dict(receitas)
     total = 0
     '''
     item contem a chave de receitas;
@@ -30,5 +31,5 @@ def calc_final():
     gastos = calc_gastos()
     receitas =  calc_receitas()
     fechamento = receitas["TOTAL"]-gastos["TOTAL"]
-    hud_final(gastos,receitas,fechamento)
-
+    calculo = {'gastos':gastos,'receitas':receitas,'fechamento':fechamento}
+    return  calculo

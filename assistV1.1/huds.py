@@ -1,5 +1,7 @@
 from os import system as sy
+import json
 
+'''acessar o bd e pegar os dados para mostrar ao usuario'''
 
 def hud_final(gastos,receitas,fechamento):
     sy('cls')
@@ -25,10 +27,11 @@ def hud_final(gastos,receitas,fechamento):
 Se o numero acima der positivo, significa que suas finanças mediante ao que nos foi passado está no verde.
 Caso o número seja negativo, rode o programa novamente para ter certeza de que esrevera
 todos os numeros corretamente e se escreveu e ainda assim o numero acima estiver negativo...
-suas finanças estão no vermelho infelizmente.''')
+suas finanças estão no vermelho infelizmente.\n''')
+    x = input('APERTE ENTER PARA VOLTAR AO MENU\n')
+    return True
 
-
-def hud_mais(dados):
+def hud_mais(dados,onde):
     total = 0
     print('-'*40)
     print(f'{"LISTAGEM DE VALORES":^40}')
@@ -41,3 +44,6 @@ def hud_mais(dados):
     print('-'*40)
     print(f'TOTAL ATÉ O MOMENTO : R${total}')
     print('-'*40)
+    if onde == 'main':
+        x = input('APERTE ENTER PARA VOLTAR AO MENU\n')
+    return True

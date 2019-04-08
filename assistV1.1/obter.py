@@ -1,21 +1,23 @@
 from os import system as sy
 from time import sleep as sl
 from huds import hud_mais
+from bd import insert_gastos, insert_receitas, ler_gastos, ler_receitas
 
 def pega_gastos():
     chave_interna = True
     chave_externa = True
-    gastos = {}
+    gastos = ler_gastos()
+    gastos=dict(gastos)
     nome = ''
     valor = ''
     while chave_externa == True:
         try:
-            hud_mais(gastos)
+            hud_mais(gastos,'')
             chave_interna = True
             while chave_interna == True:
                 sy('cls')
                 print('''DIGITE SAIR A QUALQUER MOMENTO PARA TERMINAR A INSERÇÃO DE DADOS''')
-                hud_mais(gastos)
+                hud_mais(gastos,'')
                 nome = str(input('Escreva o nome do que você quer acrescentar no sistema como gasto : ')).upper().strip()
                 if nome == 'SAIR':
                     chave_externa = False
@@ -36,7 +38,7 @@ def pega_gastos():
             while chave_interna == True:
                 sy('cls')
                 print('''DIGITE SAIR A QUALQUER MOMENTO PARA TERMINAR A INSERÇÃO DE DADOS''')
-                hud_mais(gastos)
+                hud_mais(gastos,'')
                 valor =input(f'''Escreva a quantia que gastará neste mês com {nome} : ''').upper()
                 if valor == 'SAIR':
                     chave_externa = False
@@ -56,8 +58,9 @@ def pega_gastos():
                     sl(2)
                     chave_interna = True
                 else:
-                    chave_interna = False
-                valor=float(valor)
+                    chave_interna = False       
+            valor=float(valor)
+            print(insert_gastos(nome,valor))
             gastos[nome]=valor
             if chave_externa == False:
                 break
@@ -65,24 +68,23 @@ def pega_gastos():
             if nome == '' or valor == '' or nome == None or valor == None or nome == 'SAIR' or valor == 'SAIR':
                 break
         if chave_externa == False:
-            break
-    return gastos
-
+                break
 
 def pega_receitas():
     chave_interna = True
     chave_externa = True
-    receitas = {}
+    receitas = ler_receitas()
+    receitas = dict(receitas)
     nome = ''
     valor = ''
     while chave_externa == True:
         try:
-            hud_mais(receitas)
+            hud_mais(receitas,'')
             chave_interna = True
             while chave_interna == True:
                 sy('cls')
                 print('''DIGITE SAIR A QUALQUER MOMENTO PARA TERMINAR A INSERÇÃO DE DADOS''')
-                hud_mais(receitas)
+                hud_mais(receitas,'')
                 nome = str(input('Escreva o nome do que você quer acrescentar no sistema como receita : ')).upper().strip()
                 if nome == 'SAIR':
                     chave_externa = False
@@ -103,7 +105,7 @@ def pega_receitas():
             while chave_interna == True:
                 sy('cls')
                 print('''DIGITE SAIR A QUALQUER MOMENTO PARA TERMINAR A INSERÇÃO DE DADOS''')
-                hud_mais(receitas)
+                hud_mais(receitas,'')
                 valor =input(f'''Escreva a quantia que receberá neste mês com {nome} : ''').upper()
                 if valor == 'SAIR':
                     chave_externa = False
@@ -125,6 +127,7 @@ def pega_receitas():
                 else:
                     chave_interna = False
                 valor=float(valor)
+            insert_receitas(nome,valor)
             receitas[nome]=valor
             if chave_externa == False:
                 break
@@ -133,4 +136,3 @@ def pega_receitas():
                 break
         if chave_externa == False:
             break
-    return receitas
